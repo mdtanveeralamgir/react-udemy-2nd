@@ -1,5 +1,6 @@
 // src image this way
 import reactImg from "./assets/react-core-concepts.png";
+import SelectButton from "./Components/Button/SelectButton";
 
 function App() {
   return (
@@ -16,6 +17,9 @@ function App() {
       </header>
       <main>
         <h2>Time to get started!</h2>
+        <SelectButton onSelect={() => console.log("clicked")}>
+          Chick
+        </SelectButton>
       </main>
     </div>
   );
