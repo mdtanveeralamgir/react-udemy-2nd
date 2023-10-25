@@ -1,10 +1,14 @@
 // src image this way
 import reactImg from "./assets/react-core-concepts.png";
 import SelectButton from "./Components/Button/SelectButton";
+import { EXAMPLES } from "./Components/data/data";
+import { useState } from "react";
+import Examples from "./Components/Examples";
 
 function App() {
+  const [example, setExample] = useState("");
   const handleSelect = (selector) => {
-    console.log(selector);
+    setExample(selector);
   };
 
   return (
@@ -24,6 +28,7 @@ function App() {
         <SelectButton onSelect={() => handleSelect("components")}>
           Chick
         </SelectButton>
+        <Examples {...EXAMPLES[example]} />
       </main>
     </div>
   );
