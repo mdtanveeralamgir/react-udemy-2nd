@@ -3,6 +3,10 @@ import reactImg from "./assets/react-core-concepts.png";
 import SelectButton from "./Components/Button/SelectButton";
 
 function App() {
+  const handleSelect = (selector) => {
+    console.log(selector);
+  };
+
   return (
     <div>
       <header>
@@ -17,7 +21,7 @@ function App() {
       </header>
       <main>
         <h2>Time to get started!</h2>
-        <SelectButton onSelect={() => console.log("clicked")}>
+        <SelectButton onSelect={() => handleSelect("components")}>
           Chick
         </SelectButton>
       </main>
