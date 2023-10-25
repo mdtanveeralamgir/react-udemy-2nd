@@ -25,8 +25,11 @@ function App() {
       </header>
       <main>
         <h2>Time to get started!</h2>
-        <SelectButton onSelect={() => handleSelect("components")}>
-          Chick
+        <SelectButton
+          onSelect={() => handleSelect("components")}
+          selectedOne={example === "components"}
+        >
+          Components
         </SelectButton>
         {!example ? (
           <p>Select a topic.</p>

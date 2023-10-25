@@ -1,5 +1,10 @@
 const SelectButton = (props) => {
-  return <button onClick={props.onSelect}>{props.children}</button>;
+  let isSelected = props.selectedOne ? "active" : "";
+  return (
+    <button className={isSelected} onClick={props.onSelect}>
+      {props.children}
+    </button>
+  );
 };
 
 export default SelectButton;
