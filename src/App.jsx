@@ -28,7 +28,11 @@ function App() {
         <SelectButton onSelect={() => handleSelect("components")}>
           Chick
         </SelectButton>
-        <Examples {...EXAMPLES[example]} />
+        {!example ? (
+          <p>Select a topic.</p>
+        ) : (
+          <Examples {...EXAMPLES[example]} />
+        )}
       </main>
     </div>
   );
