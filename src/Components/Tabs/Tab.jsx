@@ -1,9 +1,9 @@
-const Tab = (props) => {
-  const ButtonContainer = props.buttonContainer;
+const Tab = ({ children, buttons, buttonContainer = "menu" }) => {
+  const ButtonContainer = buttonContainer;
   return (
     <>
-      <ButtonContainer>{props.buttons}</ButtonContainer>
-      {props.children}
+      <ButtonContainer>{buttons}</ButtonContainer>
+      {children}
     </>
   );
 };
