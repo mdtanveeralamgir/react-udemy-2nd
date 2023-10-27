@@ -1,9 +1,38 @@
+import Tab from "./Tabs/Tab";
+import { useState } from "react";
+import SelectButton from "./Button/SelectButton";
+import { EXAMPLES } from "./data/data.js";
+
 const Examples = (props) => {
-  return (
+  const [example, setExample] = useState("");
+  const handleSelect = (selector) => {
+    console.log(selector);
+    setExample(selector);
+  };
+
+  const buttons = (
     <>
-      <h1>{props.title}</h1>
-      <p>{props.description}</p>
+      <SelectButton
+        onSelect={() => handleSelect("components")}
+        selectedOne={example === "components"}
+      >
+        Components
+      </SelectButton>
     </>
+  );
+
+  return (
+    <Tab buttons={buttons}>
+      {!example ? (
+        <p>Select a topic.</p>
+      ) : (
+        <>
+          {" "}
+          <h1>{EXAMPLES[example].title}</h1>
+          <p>{EXAMPLES[example].description}</p>
+        </>
+      )}
+    </Tab>
   );
 };
 
