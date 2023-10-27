@@ -1,7 +1,8 @@
 const Tab = (props) => {
+  const ButtonContainer = props.buttonContainer;
   return (
     <>
-      <menu>{props.buttons}</menu>
+      <ButtonContainer>{props.buttons}</ButtonContainer>
       {props.children}
     </>
   );

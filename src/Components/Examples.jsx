@@ -22,7 +22,7 @@ const Examples = (props) => {
   );
 
   return (
-    <Tab buttons={buttons}>
+    <Tab buttons={buttons} buttonContainer="menu">
       {!example ? (
         <p>Select a topic.</p>
       ) : (
