@@ -20,7 +20,10 @@ export default function GameBoard() {
 */
     //Recommanded way to update
     setGameBoard((prevState) => {
-      const updateBoard = [...prevState];
+      //Not deep clone
+      //   const updateBoard = [...prevState];
+      //Deep clone
+      const updateBoard = [...prevState].map((innerArray) => [...innerArray]);
       //Updating the new object
       updateBoard[rowIndex][colIndex] = currentPlayer ? "X" : "O";
       return updateBoard;
