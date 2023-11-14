@@ -5,7 +5,7 @@ const initialGameBoard = [
   [null, null, null],
   [null, null, null],
 ];
-export default function GameBoard() {
+export default function GameBoard({ onSelectSquare }) {
   const [gameBoard, setGameBoard] = useState(initialGameBoard);
   const [currentPlayer, setCurrentPlayer] = useState(true);
 
@@ -24,10 +24,15 @@ export default function GameBoard() {
       //   const updateBoard = [...prevState];
       //Deep clone
       const updateBoard = [...prevState].map((innerArray) => [...innerArray]);
+
       //Updating the new object
-      updateBoard[rowIndex][colIndex] = currentPlayer ? "X" : "O";
+      if (updateBoard[rowIndex][colIndex] == null) {
+        updateBoard[rowIndex][colIndex] = currentPlayer ? "X" : "O";
+      }
+
       return updateBoard;
     });
+    onSelectSquare(currentPlayer ? "X" : "O");
     setCurrentPlayer((prevState) => !prevState);
   };
 
