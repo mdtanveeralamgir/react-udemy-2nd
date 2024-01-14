@@ -19,7 +19,7 @@ function deriveActivePlayer(gameTurns) {
   return currentPlayer;
 }
 
-function checkWinner(gameBoard) {
+function deriveWinner(gameBoard, players) {
   for (const combination of WINNING_COMBINATIONS) {
     const firstSquareSymbol =
       gameBoard[combination[0].row][combination[0].column];
@@ -32,10 +32,22 @@ function checkWinner(gameBoard) {
       firstSquareSymbol === secondSquareSymbol &&
       secondSquareSymbol === thirdSquareSymbol
     )
-      return firstSquareSymbol;
+      return players[firstSquareSymbol];
   }
   return null;
 }
+
+function deriveGameBoard(gameTurns) {
+  let gameBoard = [...initialGameBoard.map((innerArr) => [...innerArr])];
+  for (const turn of gameTurns) {
+    const { square, player } = turn;
+    const { row, col } = square;
+    gameBoard[row][col] = player;
+  }
+
+  return gameBoard;
+}
+
 function App() {
   const [players, setPlayers] = useState({
     X: "Player 1",
@@ -43,28 +55,8 @@ function App() {
   });
   const [gameTurns, setGameTurns] = useState([]);
   const currentPlayer = deriveActivePlayer(gameTurns);
-
-  let gameBoard = [...initialGameBoard.map((innerArr) => [...innerArr])];
-  for (const turn of gameTurns) {
-    const { square, player } = turn;
-    const { row, col } = square;
-    gameBoard[row][col] = player;
-  }
-  let winner;
-  for (const combination of WINNING_COMBINATIONS) {
-    const firstSquareSymbol =
-      gameBoard[combination[0].row][combination[0].column];
-    const secondSquareSymbol =
-      gameBoard[combination[1].row][combination[1].column];
-    const thirdSquareSymbol =
-      gameBoard[combination[2].row][combination[2].column];
-    if (
-      firstSquareSymbol &&
-      firstSquareSymbol === secondSquareSymbol &&
-      secondSquareSymbol === thirdSquareSymbol
-    )
-      winner = players[firstSquareSymbol];
-  }
+  const gameBoard = deriveGameBoard(gameTurns);
+  const winner = deriveWinner(gameBoard, players);
   const hasDraw = gameTurns.length === 9 && !winner;
   function handleSelectSquare(rowIndex, colIndex) {
     setGameTurns((prevTurn) => {
