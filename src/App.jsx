@@ -63,7 +63,7 @@ function App() {
       firstSquareSymbol === secondSquareSymbol &&
       secondSquareSymbol === thirdSquareSymbol
     )
-      winner = firstSquareSymbol;
+      winner = players[firstSquareSymbol];
   }
   const hasDraw = gameTurns.length === 9 && !winner;
   function handleSelectSquare(rowIndex, colIndex) {
